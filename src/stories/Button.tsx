@@ -1,7 +1,7 @@
 import React from "react";
 import "./button.css";
 
-interface ButtonProps {
+interface ButtonProps extends React.ComponentPropsWithRef<"button"> {
   /**
    * Is this the principal call to action on the page?
    */
@@ -27,14 +27,8 @@ interface ButtonProps {
 /**
  * Primary UI component for user interaction
  */
-export const Button = React.forwardRef(
-  ({
-    primary = false,
-    size = "medium",
-    backgroundColor,
-    label,
-    ...props
-  }: ButtonProps) => {
+export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ primary = false, size = "medium", backgroundColor, label, ...props }) => {
     const mode = primary
       ? "storybook-button--primary"
       : "storybook-button--secondary";
